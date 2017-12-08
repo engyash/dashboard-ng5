@@ -1,3 +1,31 @@
-﻿<div>
-  <input type="text"/>
+﻿<div class="col-lg-12 col-md-12 col-sm-12 content">
+  <div class="search-wrap">
+    <input type="text" 
+           [(ngModel)]="searchTerm"           
+           (keyup)="search(searchTerm)"
+           class="form-control"
+           placeholder="Enter country ISO code / country name"/>
+  </div>
+  <div>
+    <table class="table table-striped">
+      <thead class="thead-inverse">
+        <tr>
+          <th>Country Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let country of countries">
+          <td (click)="getDetails(country)"><a>{{country.name}}</a>
+          <br /> 
+          <div *ngIf="country.isExpand && country.details"
+               class="country-details">
+            <div><strong>Alpha2 Code</strong>: {{country.details.alpha2_code}}</div>
+            <div><strong>Alpha3 Code</strong>: {{country.details.alpha3_code}}</div>
+          </div>
+          </td>
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

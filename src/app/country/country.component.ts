@@ -8,19 +8,18 @@ import { CountryService } from './../service';
   styleUrls: ['./country.component.scss']
 })
 export class CountryComponent {
+    searchTerm: string = '';
     countries: any = [];
 
     constructor(private countryService: CountryService) {
-        this.search('U');
-        this.getDetails('USA');
-      
+        this.search('');
     }
 
 
     // search countries by ISO code / Country name
-    search(term) {
-        this.countryService.search(term).subscribe((res) => {
-            console.log('res', res);
+    search(searchTerm) {
+       
+        this.countryService.search(searchTerm).subscribe((res) => {
             this.countries = res;
         }, () => {
 
@@ -28,9 +27,11 @@ export class CountryComponent {
     }
 
     // get country details by Country code
-    getDetails(countryCode) {
-        this.countryService.getDetails(countryCode).subscribe((res) => {
-            console.log('country details:', res);
+    getDetails(country) {
+        country.isExpand = !country.isExpand;
+
+        this.countryService.getDetails(country.alpha3_code).subscribe((res) => {
+            country.details = res;
         }, () => {
 
         });
