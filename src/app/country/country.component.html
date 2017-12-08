@@ -6,7 +6,7 @@
            class="form-control"
            placeholder="Enter country ISO code / country name"/>
   </div>
-  <div>
+  <div class="countries-list">
     <table class="table table-striped">
       <thead class="thead-inverse">
         <tr>
@@ -18,7 +18,7 @@
           <td (click)="getDetails(country)"><a>{{country.name}}</a>
           <br /> 
           <div *ngIf="country.isExpand && country.details"
-               class="country-details">
+               class="countries-list__country-details">
             <div><strong>Alpha2 Code</strong>: {{country.details.alpha2_code}}</div>
             <div><strong>Alpha3 Code</strong>: {{country.details.alpha3_code}}</div>
           </div>

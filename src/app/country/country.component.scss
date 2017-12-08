@@ -7,10 +7,27 @@ padding-top:50px;
   width: 330px;
 }
 
-.country-details {
-  padding: 10px;
-  border: 1px solid #808080;
-  background-color: #807F95;
-  color: white;
-  font-size: 15px;
+.countries-list {
+  tbody {
+    max-height: 500px;
+    overflow-y: auto;
+    float:left;
+    width:100%;
+
+    tr{
+      float:left;
+      width:100%;
+    }
+  }
+
+  &__country-details {
+    padding: 10px;
+    border: 1px solid #808080;
+    background-color: #807F95;
+    color: white;
+    font-size: 15px;
+  }
 }
+
+
+
