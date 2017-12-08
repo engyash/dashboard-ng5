@@ -19,7 +19,11 @@ export class CountryService {
     search(term) {
         return this.http.get(ApiGateway.country + `/search?text=${term}`)
             .map((res: Response) => {
-                return res.json().RestResponse.result;
+                if (res.ok) {
+                    return res.json().RestResponse.result;
+                } else {
+                    return this.logError(res);
+                }
             });
     }
 
@@ -27,10 +31,24 @@ export class CountryService {
     getDetails(countryCode) {
         return this.http.get(ApiGateway.country + `/get/iso3code/${countryCode}`)
             .map((res: Response) => {
-                return res.json().RestResponse.result;
+                if (res.ok) {
+                    return res.json().RestResponse.result;
+                } else {
+                    return this.logError(res);
+                }
             });
     }
 
 
+    private logError(error: any) {
+        try {
+            error = error.json();
+            console.error(error.error);
+        } catch (e) {
+            // ...ignore
+            console.error(error);
+        }
 
+        return Observable.throw(error);
+    }
 }

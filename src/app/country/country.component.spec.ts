@@ -57,38 +57,41 @@ describe('CountryComponent', () => {
       expect(component.countries.length).toEqual(3);
   });
 
-  it('should search countries by name', () => {
-      component.search("aus");
-      fixture.detectChanges();
-      expect(component.countries.length).toEqual(2);
+  describe('search countries', function () {
+      it('should search countries by name', () => {
+          component.search("aus");
+          fixture.detectChanges();
+          expect(component.countries.length).toEqual(2);
+      });
+
+      it('should search countries by ISO code', () => {
+          component.search("USA");
+          fixture.detectChanges();
+          expect(component.countries.length).toEqual(1);
+      });
   });
 
-  it('should search countries by ISO code', () => {
-      component.search("USA");
-      fixture.detectChanges();
-      expect(component.countries.length).toEqual(1);
-  });
+  describe('get country details', function () {
+      it('should get country details by alpha3 code', () => {
+          var country: any = { name: "Austria", alpha2_code: "AT", alpha3_code: "AUT" };
+          component.getDetails(country);
+          fixture.detectChanges();
+          expect(country.details).toBeDefined();
+          expect(country.details.name).toEqual('Austria');
+      });
 
-  it('should load country details by alpha3 code', ()=> {
-      var country:any = { name: "Austria", alpha2_code: "AT", alpha3_code: "AUT" };
-      component.getDetails(country);
-      fixture.detectChanges();
-      expect(country.details).toBeDefined();
-      expect(country.details.name).toEqual('Austria');
-  });
+      it('should expand the country details if already callapsed', () => {
+          var country: any = { name: "Austria", alpha2_code: "AT", alpha3_code: "AUT" };
+          component.getDetails(country);
+          fixture.detectChanges();
+          expect(country.isExpand).toBeTruthy();
+      });
 
-  it('should expand the country details', () => {
-      var country: any = { name: "Austria", alpha2_code: "AT", alpha3_code: "AUT" };
-      component.getDetails(country);
-      fixture.detectChanges();
-      expect(country.isExpand).toBeTruthy();
+      it('should collapse the country details if already expanded', () => {
+          var country: any = { name: "Austria", alpha2_code: "AT", alpha3_code: "AUT", isExpand: true };
+          component.getDetails(country);
+          fixture.detectChanges();
+          expect(country.isExpand).toBeFalsy();
+      });
   });
-
-  it('should collapse the country details', () => {
-      var country: any = { name: "Austria", alpha2_code: "AT", alpha3_code: "AUT", isExpand:true };
-      component.getDetails(country);
-      fixture.detectChanges();
-      expect(country.isExpand).toBeFalsy();
-  });
-
 });
