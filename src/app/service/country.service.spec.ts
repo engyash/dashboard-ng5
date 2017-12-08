@@ -111,5 +111,5 @@ describe('CountryService', () => {
               expect(console.error).toHaveBeenCalledWith(`Sorry, failed to get country details.`);
           });
       });
-  }
+  });
 });
