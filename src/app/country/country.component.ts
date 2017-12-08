@@ -16,6 +16,8 @@ export class CountryComponent {
       
     }
 
+
+    // search countries by ISO code / Country name
     search(term) {
         this.countryService.search(term).subscribe((res) => {
             console.log('res', res);
@@ -25,6 +27,7 @@ export class CountryComponent {
         });
     }
 
+    // get country details by Country code
     getDetails(countryCode) {
         this.countryService.getDetails(countryCode).subscribe((res) => {
             console.log('country details:', res);
