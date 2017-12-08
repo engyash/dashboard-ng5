@@ -4,23 +4,31 @@
            [(ngModel)]="searchTerm"           
            (keyup)="search(searchTerm)"
            class="form-control"
-           placeholder="Enter country ISO code / country name"/>
+           placeholder="Enter country ISO code / country name"/>    
   </div>
+  
   <div class="countries-list">
     <table class="table table-striped">
       <thead class="thead-inverse">
         <tr>
           <th>Country Name</th>
-        </tr>
+        </tr>        
       </thead>
       <tbody>
+        <tr *ngIf="countries.length==0"
+            class="text-center">
+          <td>No records found.</td>
+        </tr>
         <tr *ngFor="let country of countries">
           <td (click)="getDetails(country)"><a>{{country.name}}</a>
           <br /> 
+          <img src="./assets/images/loading.gif" 
+               *ngIf="country.isExpand && !country.details"
+               class="countries-list__loading-img"/>
           <div *ngIf="country.isExpand && country.details"
                class="countries-list__country-details">
-            <div><strong>Alpha2 Code</strong>: {{country.details.alpha2_code}}</div>
-            <div><strong>Alpha3 Code</strong>: {{country.details.alpha3_code}}</div>
+            <div *ngIf="country.details"><strong>Alpha2 Code</strong>: {{country.details.alpha2_code}}</div>
+            <div *ngIf="country.details"><strong>Alpha3 Code</strong>: {{country.details.alpha3_code}}</div>
           </div>
           </td>
           

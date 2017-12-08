@@ -5,6 +5,7 @@ padding-top:50px;
 .search-wrap {
   margin-bottom: 5px;
   width: 330px;
+  float:left;
 }
 
 .countries-list {
@@ -21,6 +22,10 @@ padding-top:50px;
     }
   }
 
+  &__loading-img
+    {
+    padding-left:50px;
+  }
   &__country-details {
     padding: 10px;
     border: 1px solid #808080;

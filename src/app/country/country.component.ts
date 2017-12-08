@@ -18,7 +18,6 @@ export class CountryComponent {
 
     // search countries by ISO code / Country name
     search(searchTerm) {
-       
         this.countryService.search(searchTerm).subscribe((res) => {
             this.countries = res;
         }, () => {
