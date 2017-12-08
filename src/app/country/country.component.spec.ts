@@ -53,7 +53,7 @@ describe('CountryComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('by default should load all countries', () => {
+  it('by default should load list of all countries', () => {
       expect(component.countries.length).toEqual(3);
   });
 
@@ -69,7 +69,7 @@ describe('CountryComponent', () => {
       expect(component.countries.length).toEqual(1);
   });
 
-  it('should get country details by alpha3 code', ()=> {
+  it('should load country details by alpha3 code', ()=> {
       var country:any = { name: "Austria", alpha2_code: "AT", alpha3_code: "AUT" };
       component.getDetails(country);
       fixture.detectChanges();
